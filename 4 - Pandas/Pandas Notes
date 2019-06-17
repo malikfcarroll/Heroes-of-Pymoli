@@ -1,0 +1,45 @@
+Pandas notes
+
+To select multiple columns of a specific value
+
+# new_df = df[df.columnone.isin(['Malik', 'Makeda', 'Ramsey'])]
+
+To select specific rows or columns using logic
+
+# new_df = df[(df.columnone > 5) | (df.columntwo =! 'ABC')]
+# new_df = df[(df.loc['rowtwo'] < df.iloc[4]) & (df.iloc[5] == 5000)]
+# new_df = df.iloc[:8]
+
+After selecting or creating a new data frame, it is useful to reset the indices
+
+# new_df = df[df.ID]
+# new_df.reset_index(drop=True, inplace=True)
+
+to inspect some of the data
+
+# df.head(5)
+
+median of values in a column
+# df.columnone.median()
+
+#.count(), .max(), .min(), .random(), .sum, .std
+
+number of unique values in a column
+# df.columntwo.nunique
+
+series of the unique values in a column
+# df.columnthree.unique()
+
+aggregate functions to produce a dataframe
+# df.groupby('columnone').columntwo.measurement().reset_index()
+
+to rename columns
+# df = df.rename(columns={'id': 'new name'})
+
+percentiles, ie point at which 25% is below and 75% is above
+df.groupby('columnone').columntwo.apply(labda x: np.percentile(x, 25)).reset_index()
+
+Creating pivot tables
+# df.pivot(columns='ColumnToPivot',
+         index='ColumnToBeRows',
+         values='ColumnToBeValues').reset_index
